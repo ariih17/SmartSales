@@ -1,0 +1,131 @@
+﻿@model OrderViewModel
+
+<div class="border">
+    <h1>Add New - Sales Order</h1>
+</div>
+<form method="post" id="sales-order-form">
+    <input asp-for="@Model.orderList.SO_ORDER_ID" hidden />
+    <div class="bop-3 mt-4">
+        <div class="row pb-2 border">
+            <h2 class="text-primary text-center">Sales Order Information</h2>
+        </div>
+        <div class="row pb-3 mt-4 border">
+            <div class="col-3">
+                <span>Sales Order Number</span>
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.orderList.ORDER_NO" class="form-control border shadow" placeholder="Input Here" />
+            </div>
+            <div class="col-3">
+                <span>Customer</span>
+            </div>
+            <div class="col-3">
+                <select asp-for="@Model.orderList.COM_CUSTOMER_ID" asp-items="@Model.CustomerList" class="form-select border-0 shadow">
+                    <option disabled selected>
+                        Select One
+                    </option>
+                </select>
+
+            </div>
+            <div class="col-3">
+                <label>Order Date</label>
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.orderList.ORDER_DATE" class="form-control border shadow" placeholder="Pick Date" type="date" />
+            </div>
+            <div class="col-3">
+                <label>Address</label>
+            </div>
+            <div class="col-3">
+                <input asp-for="@Model.orderList.ADDRESS" class="form-control border shadow" placeholder="Input Here" />
+            </div>
+        </div>
+        @* <div class="row pb-3 mt-4 border">
+            <h2 class="text-primary text-center">Detail Item Information</h2>
+        </div>
+        <div class="pb-3 mt-4">
+            <button type="button" id="add-item" class="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded">Add Item</button>
+        </div>
+        <table id="items-table" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Item Name</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="item-rows">
+           
+            </tbody>
+        </table>
+        <div class="mt-4">
+            <span id="total-items">Total Item: 1</span>
+            <span id="total-amount" class="ml-4">Total Amount: 10,000,000</span>
+        </div> *@
+
+        <div class="flex justify-between">
+            <button type="submit" class="bg-primary hover:bg-primary/80 p-2 rounded text-white">Save</button>
+            <a asp-controller="Order" asp-action="Index" class="btn btn-secondary border">Close</a>
+        </div>
+    </div>
+</form>
+@* 
+<script>
+    document.getElementById('add-item').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const itemRows = document.getElementById('item-rows');
+        const newRow = `
+                <tr>
+                    <td class="border border-zinc-300 p-2"><button type="button" class="delete-item">🗑️</button></td>
+                    <td class="border border-zinc-300 p-2"><input type="text" placeholder="Item Name" class="border border-zinc-300 p-1 rounded w-full" /></td>
+                    <td class="border border-zinc-300 p-2"><input type="number" value="1" class="border border-zinc-300 p-1 rounded w-full qty-input" /></td>
+                    <td class="border border-zinc-300 p-2"><input type="number" value="0" class="border border-zinc-300 p-1 rounded w-full price-input" /></td>
+                    <td class="border border-zinc-300 p-2 total-price">0</td>
+                </tr>
+            `;
+        itemRows.insertAdjacentHTML('beforeend', newRow);
+    });
+
+    document.getElementById('item-rows').addEventListener('input', function (event) {
+        if (event.target.classList.contains('qty-input') || event.target.classList.contains('price-input')) {
+            updateRowTotal(event.target.closest('tr'));
+            updateOrderSummary();
+        }
+    });
+
+    document.getElementById('item-rows').addEventListener('click', function (event) {
+        if (event.target.classList.contains('delete-item')) {
+            event.target.closest('tr').remove();
+            updateOrderSummary();
+        }
+    });
+
+    function updateRowTotal(row) {
+        const qty = row.querySelector('.qty-input').value;
+        const price = row.querySelector('.price-input').value;
+        const total = qty * price;
+        row.querySelector('.total-price').textContent = total.toLocaleString('en-US');
+    }
+
+    function updateOrderSummary() {
+        let totalItems = 0;
+        let totalAmount = 0;
+
+        const rows = document.querySelectorAll('#item-rows tr');
+        rows.forEach(function (row) {
+            const qty = parseFloat(row.querySelector('.qty-input').value) || 0;
+            const total = parseFloat(row.querySelector('.total-price').textContent.replace(/,/g, '')) || 0;
+
+            totalItems += qty;
+            totalAmount += total;
+        });
+
+        document.getElementById('total-items').textContent = `Total Item: ${totalItems}`;
+        document.getElementById('total-amount').textContent = `Total Amount: ${totalAmount.toLocaleString('en-US')}`;
+    }
+
+    updateOrderSummary();
+</script> *@

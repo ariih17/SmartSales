@@ -1,0 +1,26 @@
+﻿@model Customer
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create New Customer</h2>
+            <hr />
+        </div>
+       @*  <div class="mb-3">
+            <label asp-for="COM_CUSTOMER_ID" class="p-0">Customer ID</label>
+            <input asp-for="COM_CUSTOMER_ID" type="text" class="form-control" />
+        </div> *@
+        <div class="mb-3">
+            <label asp-for="CUSTOMER_NAME" class="p-0">Customer Name</label>
+            <input asp-for="CUSTOMER_NAME" type="text" class="form-control" />
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+            </div>
+            <div class="col-6">
+                <a asp-controller="Customer" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
+            </div>
+        </div>
+    </div>
+</form>

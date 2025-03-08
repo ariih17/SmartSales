@@ -1,0 +1,71 @@
+﻿@model List<Order>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-primary text-light py-4">
+        <div class="row">
+            <div class="">
+                <h2 class="text-white py-2">Sales Order</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3 border">
+            <div class="col-3 p-4">
+                <span>Keywords</span>
+            </div>
+            <div class="col-3 p-4">
+                <input type="text" placeholder="Input Here" />
+            </div>
+            <div class="col-3 p-4">
+                <label>Order Date</label>
+            </div>
+            <div class="col-3 p-4 px-0">
+                <input type="date" class="border border-border rounded-lg p-2" placeholder="Pick Date" />
+            </div>
+            <div class="col-12 text-end">
+                <a asp-controller="" asp-action="" class="btn btn-primary">
+                    Search
+                </a>
+            </div>
+        </div>
+        <div class="mt-6 flex space-x-4">
+            <a asp-controller="Order" asp-action="Create" class="btn btn-primary">Add New Data</a>
+            <a asp-controller="" asp-action="" class="btn btn-primary">Export To Excel</a>
+        </div>
+        <table id="tblOrderHeader" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Sales Order</th>
+                    <th>Order Date</th>
+                    <th>Customer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var obj in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Order" asp-action="Edit" asp-route-id="@obj.SO_ORDER_ID" class="btn btn-primary mx-2">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a asp-controller="Order" asp-action="Delete" asp-route-id="@obj.SO_ORDER_ID" class="btn btn-danger mx-2">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+                        <td>@obj.ORDER_NO</td>
+                        <td>@obj.ORDER_DATE</td>
+                        <td>@obj.CUSTOMER_NAME</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@* @section Scripts {
+    <script src="~/js/OrderHeader.js"></script>
+} *@
+
